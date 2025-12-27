@@ -19,3 +19,6 @@ com/GitDrinou/DA_Python_P09_LITRevu.git`
       - for MacOS: `source venv/bin/activate`
       - for Windows: `venv\Scripts\activate`
 3. Install the required packages: `pip install -r requirements.txt`
+## Launch application
+1. go to the application directory: `cd litrevu/`
+2. run the server with: `python manage.py runserver`
