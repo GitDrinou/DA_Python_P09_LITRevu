@@ -1,18 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LITRevu</title>
-    <link rel="stylesheet" href="{% static 'litrevu/styles.css' %}" />
-</head>
-<body>
-    <header>
-        <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
-        <h1>LITRevu</h1>
-    </header>
-    {% block content %}
-    {% endblock content %}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LITRevu</title>
+        <link rel="stylesheet" href="{% static 'litrevu/styles.css' %}" />
+    </head>
+    <body>
+        <header>
+            <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
+            <h1>LITRevu</h1>
+        </header>
+        {% block content %}
+        {% endblock content %}
+        {% if user.is_authenticated %}
+            <p class="txt-logout">
+                Vous êtes connecté(e) en tant que {{ request.user }}.
+                <a href="{% url 'logout' %}">Se déconnecter</a>
+            </p>
+        {% endif %}
+    </body>
 </html>

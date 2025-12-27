@@ -116,6 +116,15 @@ h2 {
     border-radius: 10%;
 }
 
+.txt-logout {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 3rem;
+    a {
+        color: var(--color-primary)
+     }
+}
+
 /* Tablet style (768px and more*/
 @media screen and (min-width: 768px) {
     body {
