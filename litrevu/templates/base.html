@@ -9,8 +9,15 @@
     </head>
     <body>
         <header>
-            <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
-            <h1>LITRevu</h1>
+            <div>
+                <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
+                <h1>LITRevu</h1>
+            </div>
+
+            {% if not user.is_authenticated %}
+            <img src="{% static 'litrevu/images/img_illustration.png' %}"
+                 alt="">
+            {% endif %}
         </header>
         {% block content %}
         {% endblock content %}

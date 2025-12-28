@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
-    --background-color: #1B3C53;
-    --color-primary: #456882;
-    --color-secondary: #D2C1B6;
-    --color-tertiary: #F9F3EF;
+    --background-color: #E4C59E;
+    --font-primary: #000000;
+    --font-secondary: #FFFFFF;
+    --color-primary: #AF8260;
+    --color-secondary: #803D3B;
+    --color-tertiary: #322C2B;
     --color-error: #880707;
 }
 
@@ -18,51 +20,59 @@ body {
     padding: 24px;
     font-size: 1.2rem;
     background-color: var(--background-color);
-    color: var(--color-tertiary)
+    color: var(--font-primary)
 }
 
 header {
     width: 100%;
-    img {
-        width: auto;
-        height: 96px;
+    margin-bottom: 2rem;
+    div {
+        background-color: var(--color-tertiary);
+        color: var(--font-secondary);
+        border-radius: 10px 10px 0 0;
+        display: grid;
+        grid-template-columns: 100px auto;
+        grid-gap: 2rem;
+        align-items: center;
+        justify-items: start;
+        border-bottom: 1px solid var(--color-primary);
+        img {
+            width: auto;
+            height: 120px;
+        }
     }
-    display: grid;
-    grid-template-columns: 100px auto;
-    grid-gap: 1.25rem;
-    align-items: center;
-    justify-items: start;
-    border-bottom: 1px solid var(--color-primary);
+    img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0 0 10px 10px;
+    }
 }
 
 h1 {
     font-size: 3rem;
     margin: 1rem 0 1rem 0;
-    text-align: center;
 }
 
 h2 {
     font-size: 2rem;
     text-align: center;
+    padding-bottom: 1.5rem;
 }
 
-.text-info {
-    font-size: 1rem;
-    font-style: italic;
+.errorlist {
+    list-style-type: none;
     margin: 1rem 0;
-}
-
-.error-msg {
-    margin-top: 1rem;
-    text-align: center;
-    color: var(--color-error);
+    text-align: left;
+    color: var(--font-secondary);
     background-color: var(--color-secondary);
-    font-weight: bold;
     padding: 1rem;
+    border-radius: 5%;
 }
 
 .section-register {
-    margin: 1rem 0 1rem 0;
+    margin-bottom: 1rem;
     background-color: var(--color-primary);
     border-radius: 10%;
     padding: 1.25rem;
@@ -70,24 +80,27 @@ h2 {
 }
 
 .section-connexion {
-    margin: 1rem 0 1rem 0;
+    text-align: center;
+    margin-bottom: 1rem;
     background-color: var(--color-primary);
     border-radius: 10%;
     padding: 1.25rem;
-    height: 350px;
+    height: fit-content;
 }
 
-.login-form {
+.login-form,
+.signup-form{
     p {
         margin-bottom: 1rem;
         label {
             display: inline-flex;
-            width: 200px;
+            width: 100%;
             margin-right: 0;
             margin-bottom: 5px;
             font-size: 1.2rem;
         }
-        input {
+        input,
+        select {
             width: 100%;
             padding: 0.25rem 0.5rem;
             border: none;
@@ -96,24 +109,45 @@ h2 {
     }
 }
 
-.btn-register {
-    margin-top: 1rem;
-    border: none;
-    font-size: 1.2rem;
-    background-color: var(--color-tertiary);
-    padding: 0.5rem 1rem;
-    border-radius: 10%;
+.signup-form {
+    ul {
+        list-style-type: square;
+        font-size: 0.9rem;
+        padding-left: 24px;
+        li {
+            text-align: justify;
+        }
+    }
 }
 
-.btn-connexion {
-    position: relative;
+.signup-link,
+.signup_cancel_link{
+    text-decoration: none;
+    cursor: pointer;
+    background-color: var(--color-tertiary);
+    padding: 0.5rem 1rem;
+    border-radius: 10%;
+    color: var(--font-secondary);
+}
+
+.btn-connexion,
+.btn-signup {
     margin-top: 1rem;
-    float:right;
     border: none;
     font-size: 1.2rem;
     background-color: var(--color-tertiary);
     padding: 0.5rem 1rem;
     border-radius: 10%;
+    color: var(--font-secondary);
+}
+
+.signup-form {
+    padding: 0 12px;
+}
+
+.signup-form_btngrp {
+    width: 100%;
+    text-align: center;
 }
 
 .txt-logout {
@@ -122,8 +156,13 @@ h2 {
     margin-top: 3rem;
     a {
         color: var(--color-primary)
-     }
+    }
 }
+
+.helptext {
+    font-size: 0.9rem;
+}
+
 
 /* Tablet style (768px and more*/
 @media screen and (min-width: 768px) {
@@ -132,26 +171,33 @@ h2 {
         max-width: 788px;
     }
 
-    .section-register {
-        border-radius: 5%;
+    .login-page {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        border: none;
     }
 
-    .section-connexion {
+    .section-register, .section-connexion {
+        height: 100%;
         border-radius: 5%;
-        height: 285px;
     }
 
     .login-form {
         p {
-            text-align: center;
+            text-align: left;
             input {
-                width: 400px;
+                width: 300px;
             }
         }
     }
 
     .btn-connexion {
-        right: 40px;
+        right: 0;
+    }
+
+    .signup-form {
+        padding: 0 48px;
     }
 }
 
@@ -162,30 +208,15 @@ h2 {
         margin: 0 auto;
     }
 
-    .login-page {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    .section-register, .section-connexion {
-        height: 100%;
-    }
-    .section-connexion {
-        padding: 1rem 3rem;
-    }
-
     .login-form {
         p {
-            text-align: left;
             input {
                 width: 100%;
             }
         }
     }
 
-    .btn-connexion {
-        right: 0;
+    .signup-form {
+        padding: 0 200px;
     }
 }

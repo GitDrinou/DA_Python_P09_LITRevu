@@ -3,15 +3,15 @@
     <main class="login-page">
     <section class="section-register">
         <h2>Inscrivez-vous maintenant</h2>
-        <button type="button" class="btn-register">S'inscrire</button>
+        <a href="{% url 'signup' %}" class="signup-link"
+                  target="_self">S'inscrire</a>
     </section>
     <section class="section-connexion">
         <h2>Connectez-vous</h2>
         {% if message %}<p class="error-msg">{{ message }}</p> {%  endif %}
-        <p class="text-info">Tous les champs sont obligatoires</p>
         <form method="post" class="login-form">
-            {% csrf_token %}
             {{ form.as_p }}
+            {% csrf_token %}
             <button type="submit" class="btn-connexion">Se connecter</button>
         </form>
     </section>
