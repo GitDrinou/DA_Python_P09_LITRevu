@@ -25,7 +25,6 @@ body {
 
 header {
     width: 100%;
-    margin-bottom: 2rem;
     div {
         background-color: var(--color-tertiary);
         color: var(--font-secondary);
@@ -61,6 +60,11 @@ h2 {
     padding-bottom: 1.5rem;
 }
 
+.main-signup,
+.main-login {
+    margin-top: 0.5em;
+}
+
 .errorlist {
     list-style-type: none;
     margin: 1rem 0;
@@ -68,24 +72,24 @@ h2 {
     color: var(--font-secondary);
     background-color: var(--color-secondary);
     padding: 1rem;
-    border-radius: 5%;
+    border-radius: 5px;
 }
 
 .section-register {
-    margin-bottom: 1rem;
     background-color: var(--color-primary);
-    border-radius: 10%;
-    padding: 1.25rem;
+    border-radius: 10px;
+    padding: 1.25rem 1.25rem 1.75rem 1.25rem;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 .section-connexion {
     text-align: center;
-    margin-bottom: 1rem;
     background-color: var(--color-primary);
-    border-radius: 10%;
+    border-radius: 10px;
     padding: 1.25rem;
     height: fit-content;
+    margin-bottom: 1rem;
 }
 
 .login-form,
@@ -126,7 +130,7 @@ h2 {
     cursor: pointer;
     background-color: var(--color-tertiary);
     padding: 0.5rem 1rem;
-    border-radius: 10%;
+    border-radius: 10px;
     color: var(--font-secondary);
 }
 
@@ -137,8 +141,9 @@ h2 {
     font-size: 1.2rem;
     background-color: var(--color-tertiary);
     padding: 0.5rem 1rem;
-    border-radius: 10%;
+    border-radius: 10px;
     color: var(--font-secondary);
+    cursor: pointer;
 }
 
 .signup-form {
@@ -171,7 +176,7 @@ h2 {
         max-width: 788px;
     }
 
-    .login-page {
+    .main-login {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1rem;
@@ -180,7 +185,7 @@ h2 {
 
     .section-register, .section-connexion {
         height: 100%;
-        border-radius: 5%;
+        border-radius: 5px;
     }
 
     .login-form {
@@ -192,8 +197,24 @@ h2 {
         }
     }
 
+    .section-register {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .signup-link {
+            width: fit-content;
+        }
+    }
+
+    .section-connexion {
+        padding: 1.25rem 2rem;
+    }
+
     .btn-connexion {
         right: 0;
+        cursor: pointer;
     }
 
     .signup-form {
@@ -214,6 +235,10 @@ h2 {
                 width: 100%;
             }
         }
+    }
+
+    .section-connexion {
+        padding: 1.25rem 3.5rem;
     }
 
     .signup-form {

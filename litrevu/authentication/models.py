@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from litrevu.constants import USER_ROLE
+
 
 class User(AbstractUser):
     """User model"""
@@ -8,8 +10,8 @@ class User(AbstractUser):
     SUBSCRIBER = 'subscriber'
 
     ROLE_CHOICES = (
-        (ADMIN, 'Administrateur'),
-        (SUBSCRIBER, 'Abonné'),
+        (ADMIN, USER_ROLE['r_admin']),
+        (SUBSCRIBER, USER_ROLE['r_subscriber']),
     )
 
     role = models.CharField(

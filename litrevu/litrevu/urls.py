@@ -20,14 +20,17 @@ from django.urls import path
 
 import authentication.views
 import flux.views
+from litrevu.constants import PAGES_NAME, PAGES_URL
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', LoginView.as_view(
+    path(PAGES_URL['u_admin'], admin.site.urls),
+    path(PAGES_URL['u_login'], LoginView.as_view(
         template_name='authentication/login.html',
         redirect_authenticated_user=True,
-    ), name='login'),
-    path('logout/', authentication.views.logout_user, name='logout'),
-    path('home/', flux.views.home, name='home'),
-    path('signup/', authentication.views.signup_page, name='signup'),
+    ), name=PAGES_NAME['p_login']),
+    path(PAGES_URL['u_logout'], authentication.views.logout_user,
+         name=PAGES_NAME['p_logout']),
+    path(PAGES_URL['u_home'], flux.views.home, name=PAGES_NAME['p_home']),
+    path(PAGES_URL['u_signup'], authentication.views.signup_page,
+         name=PAGES_NAME['p_signup']),
 ]
