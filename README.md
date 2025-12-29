@@ -20,5 +20,16 @@ com/GitDrinou/DA_Python_P09_LITRevu.git`
       - for Windows: `venv\Scripts\activate`
 3. Install the required packages: `pip install -r requirements.txt`
 ## Launch application
+On your terminal:
 1. go to the application directory: `cd litrevu/`
 2. run the server with: `python manage.py runserver`
+
+## Code style and linting
+This project follows the PEP8 coding style and uses flake8 as a linting tool 
+to maintain code quality.
+
+To launch and check the flake8 report:
+1. open your terminal
+2. execute the following command: 'flake8'
+
+If the code is not valid, you will see a list of errors.

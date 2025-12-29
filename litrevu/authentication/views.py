@@ -11,6 +11,7 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
+
 def signup_page(request):
     """ Renders the signup process """
     form = SignUpForm()
