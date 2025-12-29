@@ -12,5 +12,8 @@ class User(AbstractUser):
         (SUBSCRIBER, 'Abonné'),
     )
 
-    role = models.CharField(max_length=50, choices=ROLE_CHOICES,
-                            verbose_name="Rôle")
+    role = models.CharField(
+        max_length=50,
+        choices=ROLE_CHOICES,
+        default=SUBSCRIBER,
+        verbose_name="Rôle")

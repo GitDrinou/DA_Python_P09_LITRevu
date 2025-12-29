@@ -37,7 +37,7 @@ header {
         justify-items: start;
         border-bottom: 1px solid var(--color-primary);
         img {
-            width: auto;
+            width: 120px;
             height: 120px;
         }
     }
