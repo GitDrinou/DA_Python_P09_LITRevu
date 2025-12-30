@@ -12,12 +12,14 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.ticket} du {self.time_created}"
+
 
 class Review(models.Model):
     """ Review model"""
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(
-        max_length=1024,
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
@@ -25,6 +27,9 @@ class Review(models.Model):
     headline = models.CharField(max_length=128)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Revue : {self.ticket} du {self.time_created}"
 
 
 class UserFollows(models.Model):
@@ -40,3 +45,7 @@ class UserFollows(models.Model):
 
     class Meta:
         unique_together = (('user', 'followed_user'),)
+
+
+    def __str__(self):
+        return f"{self.user} par {self.followed_user}"
