@@ -12,8 +12,3 @@ PAGES_NAME = {
     'p_signup': 'signup',
     'p_home': 'home',
 }
-
-USER_ROLE = {
-    'r_admin': 'Administrateur',
-    'r_subscriber': 'Abonné',
-}
