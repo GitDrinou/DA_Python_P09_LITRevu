@@ -14,10 +14,14 @@ def ticket_page(request):
     """ Adds a new ticket """
     form = forms.TicketForm()
     if request.method == 'POST':
-        form = forms.TicketForm(request.POST)
+        form = forms.TicketForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            ticket = form.save(commit=False)
+            ticket.user = request.user
+            ticket.save()
             return redirect('home')
+        else:
+            form = forms.TicketForm()
     return render(
         request,
         'flux/ticket_form.html',
