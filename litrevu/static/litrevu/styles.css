@@ -25,19 +25,41 @@ body {
 
 header {
     width: 100%;
-    div {
+    margin-bottom: 1.5rem;
+    .container-header {
         background-color: var(--color-tertiary);
         color: var(--font-secondary);
         border-radius: 10px 10px 0 0;
-        display: grid;
-        grid-template-columns: 100px auto;
-        grid-gap: 2rem;
-        align-items: center;
-        justify-items: start;
         border-bottom: 1px solid var(--color-primary);
-        img {
-            width: 120px;
-            height: 120px;
+        div {
+            display: grid;
+            grid-template-columns: 100px auto;
+            grid-gap: 2rem;
+            align-items: center;
+            justify-items: start;
+            border-bottom: 1px solid var(--font-secondary);
+            img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        nav {
+            width: 100%;
+            background-color: var(--color-primary);
+            padding: 1rem;
+            ul {
+                padding-left: 1rem;
+                list-style-type: none;
+                li {
+                    a {
+                        text-decoration: none;
+                        color: var(--font-primary);
+                    }
+                    a:hover {
+                        border-bottom: 1px solid var(--font-primary);
+                    }
+                }
+            }
         }
     }
     img {
@@ -61,7 +83,8 @@ h2 {
 }
 
 .main-signup,
-.main-login {
+.main-login,
+.main-flux{
     margin-top: 0.5em;
 }
 
@@ -93,7 +116,8 @@ h2 {
 }
 
 .login-form,
-.signup-form{
+.signup-form,
+.ticket-form {
     p {
         margin-bottom: 1rem;
         label {
@@ -135,7 +159,8 @@ h2 {
 }
 
 .btn-connexion,
-.btn-signup {
+.btn-signup,
+.btn-send {
     margin-top: 1rem;
     border: none;
     font-size: 1.2rem;
@@ -155,12 +180,13 @@ h2 {
     text-align: center;
 }
 
-.txt-logout {
-    font-size: 1.2rem;
-    text-align: center;
-    margin-top: 3rem;
-    a {
-        color: var(--color-primary)
+.ticket-form {
+    textarea {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    #id_image{
+        width: 100%;
     }
 }
 
@@ -168,12 +194,56 @@ h2 {
     font-size: 0.9rem;
 }
 
+.main-flux {
+    margin-top: 3.5rem;
+    section {
+        width: 100%;
+        ul {
+            width: 100%;
+            list-style-type: none;
+            padding-left: 0;
+            li {
+                border: none;
+                font-size: 1.2rem;
+                color: var(--font-secondary);
+                cursor: pointer;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                a {
+                    background-color: var(--color-tertiary);
+                    padding: 0.5rem 1rem;
+                    text-decoration: none;
+                    color: var(--font-secondary);
+                    border-radius: 10px;
+                }
+                a:hover {
+                    background-color: var(--color-secondary);
+                    color: var(--font-secondary);
+                }
+            }
+        }
+    }
+}
 
 /* Tablet style (768px and more*/
 @media screen and (min-width: 768px) {
     body {
         margin: 0 auto;
         max-width: 788px;
+    }
+
+    header {
+        .container-header {
+            text-align: right;
+            nav {
+                ul {
+                    display: inline-flex;
+                    gap: 2rem;
+                    padding-right: 1rem;
+                }
+            }
+
+        }
     }
 
     .main-login {
@@ -219,6 +289,21 @@ h2 {
 
     .signup-form {
         padding: 0 48px;
+    }
+
+    .main-flux {
+        section {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            ul {
+                width: fit-content;
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                grid-gap: 2rem;
+            }
+        }
     }
 }
 

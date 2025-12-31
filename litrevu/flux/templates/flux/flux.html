@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Page Flux</h2>
-    <p>Vous êtes connecté(e)</p>
+    <main class="main-flux">
+        <section>
+            <ul>
+                <li><a href="{% url 'ticket' %}">Créer un ticket</a></li>
+                <li><a href="#">Demander une critique</a></li>
+                <li><a href="#">Créer une critique</a></li>
+            </ul>
+        </section>
+    </main>
 {% endblock content %}

@@ -9,9 +9,22 @@
     </head>
     <body>
         <header>
-            <div>
-                <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
-                <h1>LITRevu</h1>
+            <div class="container-header">
+                <div>
+                    <img src="{% static 'litrevu/images/logo_litrevu.svg' %}" alt="">
+                    <h1>LITRevu</h1>
+                </div>
+                {% if user.is_authenticated %}
+                    <nav>
+                        <ul>
+                            <li><a href="{% url 'home' %}">Flux</a></li>
+                            <li><a href="#">Posts</a></li>
+                            <li><a href="#">Abonnement</a></li>
+                            <li><a href="{% url 'logout' %}">Se
+                                déconnecter</a></li>
+                        </ul>
+                    </nav>
+                {% endif %}
             </div>
 
             {% if not user.is_authenticated %}
@@ -21,11 +34,5 @@
         </header>
         {% block content %}
         {% endblock content %}
-        {% if user.is_authenticated %}
-            <p class="txt-logout">
-                Vous êtes connecté(e) en tant que {{ request.user }}.
-                <a href="{% url 'logout' %}">Se déconnecter</a>
-            </p>
-        {% endif %}
     </body>
 </html>
