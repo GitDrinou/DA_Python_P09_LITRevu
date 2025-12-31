@@ -14,12 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.urls import path
 
 import authentication.views
 import flux.views
+from litrevu import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +33,4 @@ urlpatterns = [
     path('home/', flux.views.flux_page, name='home'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('ticket/', flux.views.ticket_page, name='ticket')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
