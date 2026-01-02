@@ -1,11 +1,63 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <main class="main-flux">
-        <section>
+        <section class="block-buttons">
             <ul>
                 <li><a href="{% url 'ticket' %}">Demander une critique</a></li>
                 <li><a href="#">Créer une critique</a></li>
             </ul>
+        </section>
+        <section class="block-articles">
+            {% for obj in flux %}
+                <article>
+                    <div class="article_header">
+                        <p>
+                            {% if obj.content_type == "Ticket" %}
+                                {% if user == obj.user %}
+                                    Vous avez demandé une critique
+                                {% else %}
+                                    {{ obj.user }} a demandé une critique
+                                {% endif %}
+                            {% else %}
+                                {% if user == obj.user %}
+                                    Vous avez publié une critique
+                                {% else %}
+                                    {{ obj.user }} a publié une critique
+                                {% endif %}
+                            {% endif %}
+                        </p>
+                        <p class="time_txt">
+                            {{ obj.time_created|date:"H:i d F Y" }}
+                        </p>
+                    </div>
+                    {% if obj.content_type == "Ticket" %}
+                        <p>{{ obj.title }}</p>
+                        <div class="bloc-description">
+                            <p>{{ obj.description }}</p>
+                            {% if obj.image %}
+                                <img src="/media/{{ obj.image }}"
+                                     alt="illustration de {{ obj.title }}">
+                            {% endif %}
+                        </div>
+                        <button class="btn-flux-create">Créer une
+                            critique</button>
+                    {% else %}
+                        <div class="bloc-description">
+                            <div class="review_headline">
+                                <p>{{ obj.headline }}</p>
+                                <p>{{ obj.body }}</p>
+                            </div>
+                            <p>
+                                {% for i in ""|ljust:obj.rating %}
+                                    <img src="{% static 'litrevu/images/star.png' %}"
+                                        alt="étoile">
+                                {% endfor %}
+                            </p>
+                        </div>
+                    {% endif %}
+                </article>
+            {% endfor %}
         </section>
     </main>
 {% endblock content %}

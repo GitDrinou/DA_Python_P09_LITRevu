@@ -12,6 +12,10 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def content_type(self):
+        return "Ticket"
+
     def __str__(self):
         return f"{self.ticket} du {self.time_created}"
 
@@ -27,6 +31,10 @@ class Review(models.Model):
     headline = models.CharField(max_length=128)
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def content_type(self):
+        return "Review"
 
     def __str__(self):
         return f"Revue : {self.ticket} du {self.time_created}"

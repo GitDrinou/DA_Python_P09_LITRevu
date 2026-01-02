@@ -160,7 +160,8 @@ h2 {
 
 .btn-connexion,
 .btn-signup,
-.btn-send {
+.btn-send,
+.btn-flux-create {
     margin-top: 1rem;
     border: none;
     font-size: 1.2rem;
@@ -196,7 +197,7 @@ h2 {
 
 .main-flux {
     margin-top: 3.5rem;
-    section {
+    .block-buttons {
         width: 100%;
         ul {
             width: 100%;
@@ -219,6 +220,40 @@ h2 {
                 a:hover {
                     background-color: var(--color-secondary);
                     color: var(--font-secondary);
+                }
+            }
+        }
+    }
+    .block-articles {
+        margin-top: 2rem;
+        article {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--color-tertiary);
+            background-color: var(--font-secondary);
+            border-radius: 5px;
+            .time_txt {
+                padding: 1rem 0;
+                font-size: 1rem;
+            }
+            .bloc-description {
+                .review_headline {
+                    text-align: justify;
+                    margin: 1.25rem 0;
+                    padding: 0;
+                    p:first-child {
+                        font-size: 1.5rem;
+                    }
+                }
+                p {
+                    img {
+                        width: 32px;
+                        padding: 0;
+                    }
+                }
+                img {
+                    margin-top: 1rem;
+                    width: 100%;
                 }
             }
         }
@@ -292,7 +327,7 @@ h2 {
     }
 
     .main-flux {
-        section {
+        .block-buttons {
             width: 100%;
             height: fit-content;
             display: flex;
@@ -303,6 +338,34 @@ h2 {
                 grid-template-columns: repeat(3, auto);
                 grid-gap: 2rem;
             }
+        }
+        .block-articles {
+            display: grid;
+            grid-template-rows: auto;
+            article {
+                .article_header {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 1.75rem;
+                }
+                .time_txt {
+                    padding:0;
+                }
+                .bloc-description {
+                    display: grid;
+                    grid-template-columns: auto fit-content(100%);
+                    grid-gap: 1.5rem;
+                    align-items: center;
+                    p {
+                        text-align: justify;
+                    }
+                    img {
+                        width: 250px;
+                    }
+                }
+
+            }
+
         }
     }
 }
