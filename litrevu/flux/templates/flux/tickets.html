@@ -27,8 +27,10 @@
                 {% endif %}
 
                 <div class="btn-grp-action">
-                    <button class="btn-action">Modifier</button>
-                    <button class="btn-action">Supprimer</button>
+                    <a href="{% url 'ticket_edit' post.id %}"
+                       class="update_link">Modifier</a>
+                    <a href="{% url 'ticket_edit' post.id %}"
+                       class="update_link">Supprimer</a>
                 </div>
             </article>
         {% endfor %}

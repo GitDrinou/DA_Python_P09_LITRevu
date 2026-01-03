@@ -150,7 +150,8 @@ h2 {
 }
 
 .signup-link,
-.signup_cancel_link{
+.signup_cancel_link,
+.update_link {
     text-decoration: none;
     cursor: pointer;
     background-color: var(--color-tertiary);
@@ -162,8 +163,7 @@ h2 {
 .btn-connexion,
 .btn-signup,
 .btn-send,
-.btn-flux-create,
-.btn-action {
+.btn-flux-create {
     margin-top: 1rem;
     border: none;
     font-size: 1.2rem;
@@ -188,8 +188,10 @@ h2 {
         width: 100%;
         font-size: 1.2rem;
     }
-    #id_image{
+    .form-image{
         width: 100%;
+        display: grid;
+        grid-template-columns: 200px auto;
     }
 }
 
@@ -272,6 +274,7 @@ h2 {
     }
     .btn-grp-action {
         text-align: right;
+        margin-top: 1rem;
     }
 }
 

@@ -38,14 +38,12 @@ def add_or_update_ticket(request, ticket_id=None):
         form = forms.TicketForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
-        form = forms.TicketForm(request.POST, request.FILES)
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
             ticket.save()
             return redirect('home')
-        else:
-            form = forms.TicketForm()
+
     return render(
         request,
         'flux/ticket_form.html',
