@@ -151,7 +151,8 @@ h2 {
 
 .signup-link,
 .signup_cancel_link,
-.update_link {
+.update_link,
+.cancel-link {
     text-decoration: none;
     cursor: pointer;
     background-color: var(--color-tertiary);
@@ -163,7 +164,8 @@ h2 {
 .btn-connexion,
 .btn-signup,
 .btn-send,
-.btn-flux-create {
+.btn-flux-create,
+.btn-delete {
     margin-top: 1rem;
     border: none;
     font-size: 1.2rem;
@@ -276,6 +278,11 @@ h2 {
         text-align: right;
         margin-top: 1rem;
     }
+}
+
+.main-confirm {
+    margin-top: 2rem;
+    text-align: center;
 }
 
 /* Tablet style (768px and more*/

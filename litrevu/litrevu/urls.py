@@ -35,5 +35,7 @@ urlpatterns = [
     path('ticket/', flux.views.add_or_update_ticket, name='ticket_create'),
     path('ticket/<int:ticket_id>/edit/', flux.views.add_or_update_ticket,
          name='ticket_edit'),
+    path('ticket/<int:ticket_id>/delete/', flux.views.delete_ticket,
+         name='ticket_delete'),
     path('tickets/', flux.views.get_posts, name='tickets'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

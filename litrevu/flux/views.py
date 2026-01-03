@@ -52,6 +52,21 @@ def add_or_update_ticket(request, ticket_id=None):
 
 
 @login_required
+def delete_ticket(request, ticket_id):
+    """ Deletes a ticket
+        Args:
+            request: HttpRequest
+            ticket_id: id of the ticket to be deleted
+    """
+    ticket = get_object_or_404(models.Ticket, id=ticket_id, user=request.user)
+    if request.method == 'POST':
+        ticket.delete()
+        return redirect('home')
+    return render(request, 'flux/deleted_confirm.html', context={
+        'ticket': ticket})
+
+
+@login_required
 def get_posts(request):
     """ Returns a list of all tickets """
     tickets = Ticket.objects.all()
