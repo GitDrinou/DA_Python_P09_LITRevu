@@ -84,7 +84,8 @@ h2 {
 
 .main-signup,
 .main-login,
-.main-flux{
+.main-flux,
+.main_tickets {
     margin-top: 0.5em;
 }
 
@@ -161,7 +162,8 @@ h2 {
 .btn-connexion,
 .btn-signup,
 .btn-send,
-.btn-flux-create {
+.btn-flux-create,
+.btn-action {
     margin-top: 1rem;
     border: none;
     font-size: 1.2rem;
@@ -195,7 +197,8 @@ h2 {
     font-size: 0.9rem;
 }
 
-.main-flux {
+.main-flux,
+.main_tickets {
     margin-top: 3.5rem;
     .block-buttons {
         width: 100%;
@@ -257,6 +260,18 @@ h2 {
                 }
             }
         }
+    }
+}
+
+.main_tickets {
+    .block-articles {
+        margin-top: 1rem;
+        p {
+            padding:1rem 0;
+        }
+    }
+    .btn-grp-action {
+        text-align: right;
     }
 }
 
@@ -326,7 +341,8 @@ h2 {
         padding: 0 48px;
     }
 
-    .main-flux {
+    .main-flux,
+    .main_tickets {
         .block-buttons {
             width: 100%;
             height: fit-content;
@@ -347,6 +363,7 @@ h2 {
                     display: flex;
                     justify-content: space-between;
                     margin-bottom: 1.75rem;
+                    align-items: center;
                 }
                 .time_txt {
                     padding:0;
@@ -363,7 +380,6 @@ h2 {
                         width: 250px;
                     }
                 }
-
             }
 
         }

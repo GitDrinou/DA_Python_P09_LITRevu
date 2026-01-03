@@ -32,5 +32,8 @@ urlpatterns = [
     path('logout/', authentication.views.logout_user, name='logout'),
     path('home/', flux.views.flux_page, name='home'),
     path('signup/', authentication.views.signup_page, name='signup'),
-    path('ticket/', flux.views.ticket_page, name='ticket')
+    path('ticket/', flux.views.add_or_update_ticket, name='ticket_create'),
+    path('ticket/<int:ticket_id>/edit/', flux.views.add_or_update_ticket,
+         name='ticket_edite'),
+    path('tickets/', flux.views.get_posts, name='tickets'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

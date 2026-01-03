@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main class="main_tickets">
+    <h2>Vos Posts</h2>
+    <section class="block-articles">
+        {% for post in posts %}
+            <article>
+                <div class="article_header">
+                    <p>
+                        {% if post.content_type == 'Ticket' %}
+                            Vous avez publié un ticket.
+                        {% else %}
+                            Vous avez publié une critique.
+                        {% endif %}
+                    </p>
+                    <p class="time_txt">
+                        {{ post.time_created|date:"H:i d F Y" }}
+                    </p>
+                </div>
+                {% if post.content_type == 'Ticket' %}
+                    <p>{{ post.ticket }}</p>
+                    <p>{{ post.description }}</p>
+                {% else %}
+                    <p>{{ post.headline }}</p>
+                    <p>{{ post.body }}</p>
+                {% endif %}
+
+                <div class="btn-grp-action">
+                    <button class="btn-action">Modifier</button>
+                    <button class="btn-action">Supprimer</button>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+    </main>
+{% endblock %}
