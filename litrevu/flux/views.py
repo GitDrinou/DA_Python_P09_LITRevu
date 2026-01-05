@@ -179,4 +179,4 @@ def get_posts(request):
         key=lambda obj: obj.time_created,
         reverse=True
     )
-    return render(request, 'flux/tickets.html', context={'posts': posts})
+    return render(request, 'flux/posts.html', context={'posts': posts})

@@ -217,6 +217,18 @@ h2 {
     cursor: pointer;
 }
 
+.bloc-button {
+    margin: 1.5rem 0 1rem 0;
+    .create_link {
+        text-decoration: none;
+        cursor: pointer;
+        background-color: var(--color-tertiary);
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        color: var(--font-secondary);
+    }
+}
+
 .signup-form {
     padding: 0 12px;
 }
@@ -294,11 +306,9 @@ h2 {
                         font-size: 1.5rem;
                     }
                 }
-                p {
-                    img {
-                        width: 32px;
-                        padding: 0;
-                    }
+                p:first-child {
+                    font-size: 1.25rem;
+                    padding: 1rem 0;
                 }
                 img {
                     margin-top: 1rem;
@@ -306,6 +316,30 @@ h2 {
                 }
             }
         }
+    }
+}
+
+.bloc-ticket {
+    width: 100%;
+    margin: 1rem 0;
+    border: 1px solid var(--color-tertiary);
+    padding: 1rem;
+    text-align: justify;
+    img {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+
+.ticket_title {
+    font-size: 1.25rem;
+    padding: 1rem 0;
+}
+
+.bloc-rating {
+   img {
+        width: 32px;
+        padding: 0;
     }
 }
 
@@ -446,6 +480,16 @@ h2 {
     img {
         padding-top: 1rem;
         width: 100%;
+    }
+}
+
+
+.bloc-ticket {
+    div {
+        display: grid;
+        grid-template-columns: auto fit-content(100%);
+        grid-gap: 1.25rem;
+        align-items: center;
     }
 }
 
