@@ -1,11 +1,13 @@
 from typing import Iterable
+
+from django.db import transaction
 from django.db.models import Model
 from itertools import chain
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from . import forms, models
+from .forms import TicketForm, ReviewForm
 from .models import Review, Ticket
 
 
@@ -30,12 +32,18 @@ def add_or_update_ticket(request, ticket_id=None):
             ticket_id: id of the ticket to be updated. By default: None
     """
     if ticket_id:
-        ticket = get_object_or_404(models.Ticket, id=ticket_id,
-                                   user=request.user)
-        form = forms.TicketForm(request.POST or None, request.FILES or None,
-                                instance=ticket)
+        ticket = get_object_or_404(
+            Ticket,
+            id=ticket_id,
+            user=request.user
+        )
+        form = TicketForm(
+            request.POST or None,
+            request.FILES or None,
+            instance=ticket
+        )
     else:
-        form = forms.TicketForm(request.POST or None, request.FILES or None)
+        form = TicketForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
         if form.is_valid():
@@ -58,12 +66,48 @@ def delete_ticket(request, ticket_id):
             request: HttpRequest
             ticket_id: id of the ticket to be deleted
     """
-    ticket = get_object_or_404(models.Ticket, id=ticket_id, user=request.user)
+    ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
     if request.method == 'POST':
         ticket.delete()
         return redirect('home')
     return render(request, 'flux/deleted_confirm.html', context={
         'ticket': ticket})
+
+
+@login_required
+def add_or_update_review(request):
+    """ Adds or updates a review
+        Args:
+            request: HttpRequest
+    """
+
+    ticket_form = TicketForm(prefix="ticket")
+    review_form = ReviewForm(prefix="review")
+
+    if request.method == 'POST':
+        ticket_form = TicketForm(request.POST, request.FILES, prefix="ticket")
+        review_form = ReviewForm(request.POST, prefix="review")
+
+        if ticket_form.is_valid() and review_form.is_valid():
+            with transaction.atomic():
+                ticket = ticket_form.save(commit=False)
+                ticket.user = request.user
+                ticket.save()
+
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.ticket = ticket
+                review.save()
+            return redirect('home')
+
+    return render(
+        request,
+        'flux/review_form.html',
+        context={
+            "ticket_form": ticket_form,
+            "review_form": review_form,
+        }
+    )
 
 
 @login_required
