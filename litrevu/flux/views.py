@@ -6,6 +6,7 @@ from itertools import chain
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .forms import TicketForm, ReviewForm
 from .models import Review, Ticket
@@ -70,12 +71,17 @@ def delete_ticket(request, ticket_id):
     if request.method == 'POST':
         ticket.delete()
         return redirect('home')
-    return render(request, 'flux/deleted_confirm.html', context={
-        'ticket': ticket})
+
+    context = {
+        "object_type": "le ticket",
+        "object_label": ticket.ticket,
+        "cancel_url": reverse('posts'),
+    }
+    return render(request, 'flux/deleted_confirm.html', context=context)
 
 
 @login_required
-def add_or_update_review(request):
+def add_ticket_with_review(request):
     """ Adds or updates a review
         Args:
             request: HttpRequest
@@ -102,12 +108,63 @@ def add_or_update_review(request):
 
     return render(
         request,
-        'flux/review_form.html',
+        'flux/ticket_review_form.html',
         context={
             "ticket_form": ticket_form,
             "review_form": review_form,
         }
     )
+
+
+@login_required
+def update_review(request, review_id):
+    """ Adds or updates a review
+        Args:
+            request: HttpRequest
+            review_id: id of the review to be updated. By default: None
+    """
+
+    review = get_object_or_404(
+        Review.objects.select_related("ticket"),
+        pk=review_id,
+        user=request.user
+    )
+    ticket = review.ticket
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST or None, request.FILES or None,
+                          instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(
+        request,
+        'flux/review_form.html',
+        context={'form': form, 'ticket': ticket}
+    )
+
+
+@login_required
+def delete_review(request, review_id):
+    """ Deletes a review
+        Args:
+            request: HttpRequest
+            review_id: id of the ticket to be deleted
+    """
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+    if request.method == 'POST':
+        review.delete()
+        return redirect('home')
+
+    context = {
+        "object_type": "la critique",
+        "object_label": review.headline,
+        "cancel_url": reverse('posts'),
+    }
+    return render(request, 'flux/deleted_confirm.html', context=context)
 
 
 @login_required
