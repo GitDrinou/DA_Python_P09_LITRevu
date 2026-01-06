@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main class="main-subscriptions">
+        <h2>Suivre d'autres utilisateurs</h2>
+        <section>
+            {% if messages %}
+                <div class="bloc-messages">
+                    {% for message in messages %}
+                        <p> {{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="get">
+                <label for="search">Nom d'utilisateur</label>
+                <input type="text" id="search" name="search" value=
+                        "{{ search_query }}" required>
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+        <section>
+            <h2>Vos abonnements</h2>
+            <ul>
+                {% for follow in following %}
+                    <li>{{ follow.followed_user.username }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <h2>Vos abonnés</h2>
+            <ul>
+                {% for follower in followers %}
+                    <li>{{ follower.username }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+{% endblock content %}

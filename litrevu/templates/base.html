@@ -20,7 +20,11 @@
                         <ul>
                             <li><a href="{% url 'home' %}">Flux</a></li>
                             <li><a href="{% url 'posts' %}">Posts</a></li>
-                            <li><a href="#">Abonnement</a></li>
+                            <li>
+                                <a href="{% url 'subscriptions' %}">
+                                    Abonnements
+                                </a>
+                            </li>
                             <li><a href="{% url 'logout' %}">Se
                                 déconnecter</a></li>
                         </ul>

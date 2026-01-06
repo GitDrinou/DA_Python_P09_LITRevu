@@ -45,4 +45,5 @@ urlpatterns = [
     path('review/<int:review_id>/delete/', flux.views.delete_review,
          name='review_delete'),
     path('posts/', flux.views.get_posts, name='posts'),
+    path('subscriptions/', flux.views.subscriptions_page, name='subscriptions')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -50,6 +50,7 @@ class UserFollows(models.Model):
         on_delete=models.CASCADE,
         related_name='followed_by'
     )
+    is_blocked = models.BooleanField(default=False)
 
     class Meta:
         unique_together = (('user', 'followed_user'),)
