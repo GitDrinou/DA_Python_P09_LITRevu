@@ -4,43 +4,50 @@
     <main class="main_tickets">
     <h2>Vos Posts</h2>
     <section class="block-articles">
-        {% for post in posts %}
-            <article>
-                <div class="article_header">
-                    <p>
-                        {% if post.content_type == 'Ticket' %}
-                            Vous avez publié un ticket.
-                        {% else %}
-                            Vous avez publié une critique.
-                        {% endif %}
-                    </p>
-                    <p class="time_txt">
-                        {{ post.time_created|date:"H:i d F Y" }}
-                    </p>
-                </div>
-                {% if post.content_type == 'Ticket' %}
-                    <p>{{ post.ticket }}</p>
-                    <p>{{ post.description }}</p>
-                {% else %}
-                    <p>{{ post.headline }}</p>
-                    <p>{{ post.body }}</p>
-                {% endif %}
-
-                <div class="btn-grp-action">
+        {% if posts %}
+            {% for post in posts %}
+                <article>
+                    <div class="article_header">
+                        <p>
+                            {% if post.content_type == 'Ticket' %}
+                                Vous avez publié un ticket.
+                            {% else %}
+                                Vous avez publié une critique.
+                            {% endif %}
+                        </p>
+                        <p class="time_txt">
+                            {{ post.time_created|date:"H:i d F Y" }}
+                        </p>
+                    </div>
                     {% if post.content_type == 'Ticket' %}
-                        <a href="{% url 'ticket_edit' post.id %}"
-                           class="update_link">Modifier</a>
-                        <a href="{% url 'ticket_delete' post.id %}"
-                           class="update_link">Supprimer</a>
+                        <p>{{ post.ticket }}</p>
+                        <p>{{ post.description }}</p>
                     {% else %}
-                        <a href="{% url 'review_edit' post.id %}"
-                           class="update_link">Modifier</a>
-                        <a href="{% url 'review_delete' post.id %}"
-                           class="update_link">Supprimer</a>
+                        <p>{{ post.headline }}</p>
+                        <p>{{ post.body }}</p>
                     {% endif %}
-                </div>
-            </article>
-        {% endfor %}
+
+                    <div class="btn-grp-action">
+                        {% if post.content_type == 'Ticket' %}
+                            <a href="{% url 'ticket_edit' post.id %}"
+                               class="update_link">Modifier</a>
+                            <a href="{% url 'ticket_delete' post.id %}"
+                               class="update_link">Supprimer</a>
+                        {% else %}
+                            <a href="{% url 'review_edit' post.id %}"
+                               class="update_link">Modifier</a>
+                            <a href="{% url 'review_delete' post.id %}"
+                               class="update_link">Supprimer</a>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+            <div class="empty-posts">
+                <p>Vous n'avez publié aucuns posts.</p>
+                <img src="{% static 'litrevu/images/empty.png' %}" alt="">
+            </div>
+        {% endif %}
     </section>
     </main>
 {% endblock %}

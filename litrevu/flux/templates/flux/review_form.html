@@ -6,7 +6,7 @@
         {% else %}
             <h2>Créer une critique</h2>
         {% endif %}
-    <section class="bloc-ticket-detail">
+    <section class="bloc-ticket">
         <h3>Ticket</h3>
         {% if ticket.user == user %}
             <p>Vous avez demandé une critique :</p>
@@ -15,11 +15,13 @@
         {% endif %}
         <p class="time_txt">{{ ticket.time_created|date:"H:i d F Y" }}</p>
         <p>{{ ticket.ticket }}</p>
-        <p>{{ ticket.description }}</p>
-        {% if ticket.image %}
-            <img src="/media/{{ ticket.image }}" alt="illustration de
+        <div>
+            <p>{{ ticket.description }}</p>
+            {% if ticket.image %}
+                <img src="/media/{{ ticket.image }}" alt="illustration de
 {{ ticket.ticket }}">
-        {% endif %}
+            {% endif %}
+        </div>
     </section>
     <section class="bloc-review">
         <h3>Critique</h3>

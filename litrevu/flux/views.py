@@ -24,7 +24,18 @@ def flux_page(request):
         key=lambda obj: obj.time_created,
         reverse=True
     )
-    return render(request, 'flux/flux.html', {'flux': flux})
+    user_reviewed_tickets = Review.objects.filter(
+        user=request.user).values_list(
+        'ticket_id', flat=True)
+
+    return render(
+        request,
+        'flux/flux.html',
+        context={
+            'flux': flux,
+            'user_reviewed_tickets': user_reviewed_tickets
+        }
+    )
 
 
 @login_required

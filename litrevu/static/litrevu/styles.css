@@ -361,6 +361,17 @@ h2 {
     text-align: center;
 }
 
+.empty-posts {
+    margin-top: -1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 100%;
+    img {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+
 /* Tablet style (768px and more*/
 @media screen and (min-width: 768px) {
     body {
@@ -472,17 +483,10 @@ h2 {
         }
     }
 
-    .bloc-ticket-detail {
-        width: 100%;
-        border: 1px solid var(--color-tertiary);
-        padding: 1rem;
-        img {
-            padding-top: 1rem;
-            width: 100%;
-        }
-    }
-
     .bloc-ticket {
+        p {
+            padding-top: 1rem;
+        }
         div {
             display: grid;
             grid-template-columns: auto fit-content(100%);
