@@ -1,3 +1,4 @@
+import os
 from typing import Iterable
 
 from django.db import transaction
@@ -8,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+from litrevu import settings
 from .forms import TicketForm, ReviewForm
 from .models import Review, Ticket
 
@@ -69,6 +71,11 @@ def delete_ticket(request, ticket_id):
     """
     ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
     if request.method == 'POST':
+        if ticket.image:
+            image_path = os.path.join(settings.MEDIA_ROOT, str(ticket.image))
+            if os.path.exists(image_path):
+                os.remove(image_path)
+
         ticket.delete()
         return redirect('home')
 
