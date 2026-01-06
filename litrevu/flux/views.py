@@ -168,6 +168,33 @@ def delete_review(request, review_id):
 
 
 @login_required
+def add_review_to_ticket(request, ticket_id):
+    """ Adds a review for a ticket
+        Args:
+            request: HttpRequest
+            ticket_id: id of the ticket to be reviewed.
+    """
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, request.FILES, prefix="review")
+        if form.is_valid():
+            with transaction.atomic():
+                review = form.save(commit=False)
+                review.user = request.user
+                review.ticket = ticket
+                review.save()
+            return redirect('home')
+    else:
+        form = ReviewForm(prefix="review")
+
+    return render(request, 'flux/review_form.html', context={
+            "ticket": ticket,
+            "form": form,
+        })
+
+
+@login_required
 def get_posts(request):
     """ Returns a list of all tickets """
     tickets = Ticket.objects.all()

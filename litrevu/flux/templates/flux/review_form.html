@@ -9,9 +9,9 @@
     <section class="bloc-ticket-detail">
         <h3>Ticket</h3>
         {% if ticket.user == user %}
-            <p>Vous avez demandé une critique:</p>
+            <p>Vous avez demandé une critique :</p>
         {% else %}
-            <p>{{ ticket.user }} a demandé une critique:</p>
+            <p>{{ ticket.user }} a demandé une critique :</p>
         {% endif %}
         <p class="time_txt">{{ ticket.time_created|date:"H:i d F Y" }}</p>
         <p>{{ ticket.ticket }}</p>

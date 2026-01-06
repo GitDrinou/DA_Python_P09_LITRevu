@@ -471,34 +471,34 @@ h2 {
 
         }
     }
-}
 
-.bloc-ticket-detail {
-    width: 100%;
-    border: 1px solid var(--color-tertiary);
-    padding: 1rem;
-    img {
-        padding-top: 1rem;
+    .bloc-ticket-detail {
         width: 100%;
+        border: 1px solid var(--color-tertiary);
+        padding: 1rem;
+        img {
+            padding-top: 1rem;
+            width: 100%;
+        }
+    }
+
+    .bloc-ticket {
+        div {
+            display: grid;
+            grid-template-columns: auto fit-content(100%);
+            grid-gap: 1.25rem;
+            align-items: center;
+        }
+    }
+
+    .bloc-review {
+        margin-top: 1rem;
+        h3 {
+            padding-bottom: 1rem;
+        }
     }
 }
 
-
-.bloc-ticket {
-    div {
-        display: grid;
-        grid-template-columns: auto fit-content(100%);
-        grid-gap: 1.25rem;
-        align-items: center;
-    }
-}
-
-.bloc-review {
-    margin-top: 1rem;
-    h3 {
-        padding-bottom: 1rem;
-    }
-}
 
 /* Desktop style (1024px and more*/
 @media screen and (min-width: 1024px) {

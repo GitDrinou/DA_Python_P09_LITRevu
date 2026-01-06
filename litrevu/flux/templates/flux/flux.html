@@ -39,11 +39,11 @@
                             <p>{{ obj.description }}</p>
                             {% if obj.image %}
                                 <img src="/media/{{ obj.image }}"
-                                     alt="illustration de {{ obj.title }}">
+                                     alt="illustration de {{ obj.ticket }}">
                             {% endif %}
                         </div>
                         <div class="bloc-button">
-                            <a href="{% url 'review_create' %}"
+                            <a href="{% url 'ticket_review' obj.id%}"
                               class="create_link">Créer une critique</a>
                         </div>
                     {% else %}

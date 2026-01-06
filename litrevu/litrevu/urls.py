@@ -37,6 +37,8 @@ urlpatterns = [
          name='ticket_edit'),
     path('ticket/<int:ticket_id>/delete/', flux.views.delete_ticket,
          name='ticket_delete'),
+    path('ticket/<int:ticket_id>/review/',
+         flux.views.add_review_to_ticket, name='ticket_review'),
     path('review/', flux.views.add_ticket_with_review, name='review_create'),
     path('review/<int:review_id>/edit/', flux.views.update_review,
          name='review_edit'),
