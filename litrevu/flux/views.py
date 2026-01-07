@@ -266,13 +266,11 @@ def subscriptions_page(request):
                 f"L'utilisateur {search_query} n'existe pas.")
 
     following = UserFollows.objects.filter(
-        user=current_user,
-        is_blocked=False
+        user=current_user
     ).select_related('followed_user')
 
     followers = UserFollows.objects.filter(
-        followed_user=current_user,
-        is_blocked=False
+        followed_user=current_user
     ).select_related('user')
 
     context = {
@@ -282,3 +280,16 @@ def subscriptions_page(request):
     }
 
     return render(request, 'flux/subscriptions.html', context)
+
+
+@login_required
+def unfollow_user(request, user_id):
+    """ Unfollows a user
+        Args:
+            request: HttpRequest
+            user_id: id of the user to be unfollowed
+    """
+    followed_user = get_object_or_404(User, id=user_id)
+    UserFollows.objects.filter(user=request.user,
+                               followed_user=followed_user).delete()
+    return redirect('subscriptions')

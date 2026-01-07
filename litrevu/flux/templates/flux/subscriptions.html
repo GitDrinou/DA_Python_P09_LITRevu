@@ -2,9 +2,9 @@
 {% block content %}
     <main class="main-subscriptions">
         <h2>Suivre d'autres utilisateurs</h2>
-        <section>
+        <section class="block-search">
             {% if messages %}
-                <div class="bloc-messages">
+                <div class="errorlist">
                     {% for message in messages %}
                         <p> {{ message }}</p>
                     {% endfor %}
@@ -21,7 +21,14 @@
             <h3>Abonnements</h3>
             <ul class="following-list">
                 {% for follow in following %}
-                    <li>{{ follow.followed_user.username }}</li>
+                    <li>
+                        {{ follow.followed_user.username }}
+                         <form method="post" action="
+{% url 'unfollow_user' follow.followed_user.id %}">
+                            {% csrf_token %}
+                            <button>Se désabonner</button>
+                        </form>
+                    </li>
                 {% endfor %}
             </ul>
         </section>
