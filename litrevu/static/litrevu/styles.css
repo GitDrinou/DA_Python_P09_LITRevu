@@ -82,6 +82,12 @@ h2 {
     padding-bottom: 1.5rem;
 }
 
+h3 {
+    margin-top: 2rem;
+    font-size: 1.75rem;
+    padding-bottom: 1.5rem;
+}
+
 .main-signup,
 .main-login,
 .main-flux,
@@ -120,7 +126,7 @@ h2 {
 .login-form,
 .signup-form,
 .ticket-form,
-.review-form{
+.review-form {
     p {
         margin-bottom: 1rem;
         label {
@@ -169,6 +175,23 @@ h2 {
                 font-size: 1.2rem;
             }
         }
+    }
+}
+
+.subscription-form {
+    label {
+        display: inline-flex;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+    }
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.25rem 0.5rem;
+        border: none;
+        font-size: 1.2rem;
     }
 }
 
@@ -260,8 +283,9 @@ h2 {
 }
 
 .main-flux,
-.main_tickets {
-    margin-top: 3.5rem;
+.main_tickets,
+.main-subscriptions {
+    margin-top: 2.5rem;
     .block-buttons {
         width: 100%;
         ul {
@@ -369,6 +393,15 @@ h2 {
     img {
         width: 100%;
         border-radius: 10px;
+    }
+}
+
+.following-list {
+    list-style-type: none;
+    padding: 0;
+    li {
+        padding: 0.5rem;
+        border: 1px solid var(--color-tertiary);
     }
 }
 

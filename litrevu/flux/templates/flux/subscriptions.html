@@ -10,26 +10,26 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <form method="get">
+            <form method="get" class="subscription-form">
                 <label for="search">Nom d'utilisateur</label>
                 <input type="text" id="search" name="search" value=
                         "{{ search_query }}" required>
-                <button type="submit">Envoyer</button>
+                <button type="submit" class="btn-send">Envoyer</button>
             </form>
         </section>
         <section>
-            <h2>Vos abonnements</h2>
-            <ul>
+            <h3>Abonnements</h3>
+            <ul class="following-list">
                 {% for follow in following %}
                     <li>{{ follow.followed_user.username }}</li>
                 {% endfor %}
             </ul>
         </section>
         <section>
-            <h2>Vos abonnés</h2>
-            <ul>
+            <h3>Abonnés</h3>
+            <ul class="following-list">
                 {% for follower in followers %}
-                    <li>{{ follower.username }}</li>
+                    <li>{{ follower.user.username }}</li>
                 {% endfor %}
             </ul>
         </section>
