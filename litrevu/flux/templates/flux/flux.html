@@ -12,6 +12,7 @@
         </section>
         <section class="block-articles">
             {% for obj in flux %}
+
                 <article>
                     <div class="article_header">
                         <p>
@@ -42,12 +43,6 @@
                                      alt="illustration de {{ obj.ticket }}">
                             {% endif %}
                         </div>
-                        {% if obj.id not in user_reviewed_tickets %}
-                            <div class="bloc-button">
-                                <a href="{% url 'ticket_review' obj.id%}"
-                                  class="create_link">Créer une critique</a>
-                            </div>
-                        {% endif %}
                     {% else %}
                         <div class="bloc-rating">
                             {% for i in ""|ljust:obj.rating %}

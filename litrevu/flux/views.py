@@ -20,9 +20,15 @@ User = get_user_model()
 
 @login_required
 def flux_page(request):
-    """ Renders the home page for connected users """
-    tickets: Iterable[Model] = Ticket.objects.all()
-    reviews: Iterable[Model] = Review.objects.all()
+    """ Renders the home page for the connected user with his posts and
+    followed users posts """
+    followed_users = UserFollows.objects.filter(
+        user=request.user
+    ).values_list('followed_user', flat=True)
+    users = list(followed_users)
+    users.append(request.user.id)
+    tickets: Iterable[Model] = Ticket.objects.filter(user__in=users)
+    reviews: Iterable[Model] = Review.objects.filter(user__in=users)
     flux = sorted(
         chain(tickets, reviews),
         key=lambda obj: obj.time_created,
@@ -30,7 +36,7 @@ def flux_page(request):
     )
     user_reviewed_tickets = Review.objects.filter(
         user=request.user).values_list(
-        'ticket_id', flat=True)
+        'ticket_id', flat=True).distinct()
 
     return render(
         request,
