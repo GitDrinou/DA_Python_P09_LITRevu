@@ -27,10 +27,18 @@ def flux_page(request):
     ).values_list('followed_user', flat=True)
     users = list(followed_users)
     users.append(request.user.id)
-    tickets: Iterable[Model] = Ticket.objects.filter(user__in=users)
-    reviews: Iterable[Model] = Review.objects.filter(user__in=users)
+    tickets: Iterable[Ticket] = Ticket.objects.filter(user__in=users)
+    reviews: Iterable[Review] = Review.objects.filter(user__in=users)
+
+    connected_user_tickets = Ticket.objects.filter(user=request.user)
+    reviews_on_user_tickets = Review.objects.filter(
+        ticket_id__in=connected_user_tickets
+    )
+
+    all_reviews = reviews.union(reviews_on_user_tickets)
+
     flux = sorted(
-        chain(tickets, reviews),
+        chain(tickets, all_reviews),
         key=lambda obj: obj.time_created,
         reverse=True
     )
