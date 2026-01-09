@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main class="main-login">
+    <main class="bloc-main main-login">
     <section class="section-register">
         <h2>Inscrivez-vous maintenant</h2>
-        <a href="{% url 'signup' %}" class="signup-link"
+        <a href="{% url 'signup' %}" class="btn-link-action"
                   target="_self">S'inscrire</a>
     </section>
     <section class="section-connexion">
         <h2>Connectez-vous</h2>
         {% if message %}<p class="error-msg">{{ message }}</p> {%  endif %}
-        <form method="post" class="login-form">
+        <form method="post" class="bloc-form">
             {{ form.as_p }}
             {% csrf_token %}
-            <button type="submit" class="btn-connexion">Se connecter</button>
+            <button type="submit" class="btn-action">Se connecter</button>
         </form>
     </section>
     </main>

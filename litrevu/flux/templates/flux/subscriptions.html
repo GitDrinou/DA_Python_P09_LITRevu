@@ -14,7 +14,7 @@
                 <label for="search">Nom d'utilisateur</label>
                 <input type="text" id="search" name="search" value=
                         "{{ search_query }}" required>
-                <button type="submit" class="btn-send">Envoyer</button>
+                <button type="submit" class="btn-action">Envoyer</button>
             </form>
         </section>
         <section>
@@ -22,11 +22,11 @@
             <ul class="following-list">
                 {% for follow in following %}
                     <li>
-                        {{ follow.followed_user.username }}
+                        <span>{{ follow.followed_user.username }}</span>
                          <form method="post" action="
 {% url 'unfollow_user' follow.followed_user.id %}">
                             {% csrf_token %}
-                            <button>Se désabonner</button>
+                            <button class="btn-action">Se désabonner</button>
                         </form>
                     </li>
                 {% endfor %}
@@ -34,7 +34,7 @@
         </section>
         <section>
             <h3>Abonnés</h3>
-            <ul class="following-list">
+            <ul class="followers-list">
                 {% for follower in followers %}
                     <li>{{ follower.user.username }}</li>
                 {% endfor %}

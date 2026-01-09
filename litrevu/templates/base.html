@@ -5,33 +5,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LITRevu</title>
+        <link rel="icon" href="{% static 'litrevu/images/favicon.ico' %}">
         <link rel="stylesheet" href="{% static 'litrevu/styles.css' %}" />
     </head>
     <body>
         <header>
-            <div class="container-header">
-                <div>
-                    <img src="{% static 'litrevu/images/logo_litrevu.svg' %}"
-                         alt="">
-                    <h1>LITRevu</h1>
-                </div>
-                {% if user.is_authenticated %}
-                    <nav>
-                        <ul>
-                            <li><a href="{% url 'home' %}">Flux</a></li>
-                            <li><a href="{% url 'posts' %}">Posts</a></li>
-                            <li>
-                                <a href="{% url 'subscriptions' %}">
-                                    Abonnements
-                                </a>
-                            </li>
-                            <li><a href="{% url 'logout' %}">Se
-                                déconnecter</a></li>
-                        </ul>
-                    </nav>
-                {% endif %}
+            <div class="header-logo">
+                <img src="{% static 'litrevu/images/logo_litrevu.svg' %}"
+                     alt="">
+                <h1>LITRevu</h1>
             </div>
-
+            {% if user.is_authenticated %}
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Flux</a></li>
+                        <li><a href="{% url 'posts' %}">Posts</a></li>
+                        <li>
+                            <a href="{% url 'subscriptions' %}">
+                                Abonnements
+                            </a>
+                        </li>
+                        <li><a href="{% url 'logout' %}">Se
+                            déconnecter</a></li>
+                    </ul>
+                </nav>
+            {% endif %}
             {% if not user.is_authenticated %}
             <img src="{% static 'litrevu/images/img_illustration.webp' %}"
                  alt="">

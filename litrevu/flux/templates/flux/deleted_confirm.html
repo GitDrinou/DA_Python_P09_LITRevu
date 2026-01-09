@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main class="main-confirm">
+    <main class="bloc-main main-confirm">
        <h2>Supprimer {{ object_type }}:<br> "{{ object_type }}"</h2>
         <p>Êtes-vous sûr de vouloir supprimer ce ticket ? </p>
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="btn-delete">Supprimer</button>
-            <a href="{{ cancel_url }}" class="cancel-link">Annuler</a>
+            <a href="{{ cancel_url }}" class="btn-link-action">Annuler</a>
         </form>
     </main>
 {% endblock content %}

@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main class="main-signup">
+    <main class="bloc-main">
         <h2>Inscrivez-vous</h2>
-        {% if form.errors %}
-            {{ form.errors }}
-        {% endif %}
-        <form method="post" class="signup-form">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <div class="signup-form_btngrp">
-                <a href="{% url 'login' %}" target="_self"
-                   class="signup_cancel_link">Annuler</a>
-                <button type="submit" class="btn-signup">S'inscrire</button>
-            </div>
-        </form>
+        <section>
+            <form method="post" class="bloc-form signup-form">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <div class="signup-form_btngrp">
+                    <a href="{% url 'login' %}" target="_self"
+                       class="btn-link-action">Annuler</a>
+                    <button type="submit" class="btn-action">S'inscrire</button>
+                </div>
+            </form>
+        </section>
     </main>
 {% endblock content %}

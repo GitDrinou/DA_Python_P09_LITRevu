@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
+    <main class="bloc-main">
         {% if form.ticket.value is not None %}
             <h2>Modifier un ticket</h2>
         {% else %}
@@ -9,7 +9,8 @@
         {% if form.errors %}
             {{ form.errors }}
         {% endif %}
-        <form method="post" class="ticket-form" enctype="multipart/form-data">
+        <form method="post" class="bloc-form ticket-form"
+              enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
                 {% if field.name == "image" and form.instance.image %}
@@ -29,7 +30,7 @@
                     </p>
                 {% endif %}
             {% endfor %}
-            <button type="submit" class="btn-send">Envoyer</button>
+            <button type="submit" class="btn-action">Envoyer</button>
         </form>
     </main>
 {% endblock content %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <main class="main_tickets">
+    <main class="bloc-main main-posts">
     <h2>Vos Posts</h2>
-    <section class="block-articles">
+    <section class="bloc-articles">
         {% if posts %}
             {% for post in posts %}
                 <article>
@@ -21,7 +21,7 @@
                     </div>
                     {% if post.content_type == 'Ticket' %}
                         <p class="ticket_title">{{ post.ticket }}</p>
-                        <div class="bloc-description">
+                        <div class="bloc-grp-desc-img">
                             <p>{{ post.description }}</p>
                             {% if post.image %}
                                 <img src="/media/{{ post.image }}"
@@ -35,12 +35,14 @@
                                     alt="étoile">
                             {% endfor %}
                         </div>
-                        <p>{{ post.headline }}</p>
-                        <p>{{ post.body }}</p>
-                        <div class="bloc-ticket">
+                        <div class="review_headline">
+                            <p>{{ post.headline }}</p>
+                            <p>{{ post.body }}</p>
+                        </div>
+                        <div class="bloc-ticket-reviewed">
                             <p>Ticket {{ post.ticket.user }}</p>
                             <p class="ticket_title">{{ post.ticket.ticket }}</p>
-                            <div class="bloc-description">
+                            <div class="bloc-grp-desc-img">
                                 <p>{{ post.ticket.description }}</p>
                                 {% if post.ticket.image %}
                                     <img src="/media/{{ post.ticket.image }}"
@@ -48,21 +50,19 @@
     {{ obj.ticket.ticket }}">
                                 {% endif %}
                             </div>
-
                         </div>
                     {% endif %}
-
                     <div class="btn-grp-action">
                         {% if post.content_type == 'Ticket' %}
                             <a href="{% url 'ticket_edit' post.id %}"
-                               class="update_link">Modifier</a>
+                               class="btn-link-action">Modifier</a>
                             <a href="{% url 'ticket_delete' post.id %}"
-                               class="update_link">Supprimer</a>
+                               class="btn-link-action">Supprimer</a>
                         {% else %}
                             <a href="{% url 'review_edit' post.id %}"
-                               class="update_link">Modifier</a>
+                               class="btn-link-action">Modifier</a>
                             <a href="{% url 'review_delete' post.id %}"
-                               class="update_link">Supprimer</a>
+                               class="btn-link-action">Supprimer</a>
                         {% endif %}
                     </div>
                 </article>

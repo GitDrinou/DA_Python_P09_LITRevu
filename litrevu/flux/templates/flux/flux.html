@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <main class="main-flux">
-        <section class="block-buttons">
+    <main class="bloc-main main-flux">
+        <section class="flux-bloc-buttons">
             <ul>
                 <li><a href="{% url 'ticket_create' %}">Demander une
                     critique</a></li>
@@ -10,7 +10,7 @@
                     critique</a></li>
             </ul>
         </section>
-        <section class="block-articles">
+        <section class="bloc-articles">
             {% for obj in flux %}
                 <article>
                     <div class="article_header">
@@ -35,7 +35,7 @@
                     </div>
                     {% if obj.content_type == "Ticket" %}
                         <p class="ticket_title">{{ obj.ticket }}</p>
-                        <div class="bloc-description">
+                        <div class="bloc-grp-desc-img">
                             <p>{{ obj.description }}</p>
                             {% if obj.image %}
                                 <img src="/media/{{ obj.image }}"
@@ -45,7 +45,7 @@
                         {% if obj.id not in user_reviewed_tickets %}
                             <div class="bloc-button">
                                 <a href="{% url 'ticket_review' obj.id%}"
-                                  class="create_link">Créer une critique</a>
+                                  class="btn-link-action">Créer une critique</a>
                             </div>
                         {% endif %}
                     {% else %}
@@ -55,16 +55,14 @@
                                     alt="étoile">
                             {% endfor %}
                         </div>
-                        <div class="bloc-description">
-                            <div class="review_headline">
-                                <p>{{ obj.headline }}</p>
-                                <p>{{ obj.body }}</p>
-                            </div>
+                        <div class="review_headline">
+                            <p>{{ obj.headline }}</p>
+                            <p>{{ obj.body }}</p>
                         </div>
-                        <div class="bloc-ticket">
+                        <div class="bloc-ticket-reviewed">
                             <p>Ticket {{ obj.ticket.user }}</p>
                             <p class="ticket_title">{{ obj.ticket.ticket }}</p>
-                            <div>
+                            <div class="bloc-grp-desc-img">
                                 <p>{{ obj.ticket.description }}</p>
                                 {% if obj.ticket.image %}
                                     <img src="/media/{{ obj.ticket.image }}"

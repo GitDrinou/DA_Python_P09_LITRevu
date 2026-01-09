@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main class="main_review">
+    <main class="bloc-main">
         <h2>Créer une critique</h2>
-        <form method="post" enctype="multipart/form-data" class="review-form">
+        <form method="post" enctype="multipart/form-data" class="
+        bloc-form review-form">
           {% csrf_token %}
 
           <fieldset>
@@ -15,7 +16,7 @@
             {{ review_form.as_p }}
           </fieldset>
 
-          <button type="submit" class="btn-send">Envoyer</button>
+          <button type="submit" class="btn-action">Envoyer</button>
         </form>
     </main>
 {% endblock content %}
