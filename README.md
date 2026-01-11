@@ -13,12 +13,13 @@ share insights, discover new perspectives, and engage with thoughtful critiques.
 1. Clone the project with the command:`git clone https://github.
 com/GitDrinou/DA_Python_P09_LITRevu.git`
 2. Create a virtual environment by running the following lines in your terminal:
-   - check if you have access to `venv`: `python -m venv --help`
-   - create the environment: `python -m venv venv`
-   - activate the environment:
-      - for MacOS: `source venv/bin/activate`
-      - for Windows: `venv\Scripts\activate`
-3. Install the required packages: `pip install -r requirements.txt`
+   - first, go to the root of your application
+   - check if you have access to `venv`: `python3 -m venv --help`
+   - create the environment with : `python3 -m venv env`
+   - activate the environment with:
+      - for MacOS: `source env/bin/activate`
+      - for Windows: `env\Scripts\activate`
+3. Install the required packages with : `pip install -r requirements.txt`
 ## Launch application
 On your terminal:
 1. go to the application directory: `cd litrevu/`

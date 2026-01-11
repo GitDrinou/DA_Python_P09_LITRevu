@@ -121,7 +121,7 @@ def delete_ticket(request, ticket_id):
                 os.remove(image_path)
 
         ticket.delete()
-        return redirect('home')
+        return redirect('posts')
 
     context = {
         "object_type": "le ticket",
@@ -208,7 +208,7 @@ def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id, user=request.user)
     if request.method == 'POST':
         review.delete()
-        return redirect('home')
+        return redirect('posts')
 
     context = {
         "object_type": "la critique",

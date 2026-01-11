@@ -98,6 +98,10 @@ h3 {
     text-align: center;
 }
 
+.txt-confirm {
+    padding: 1.5rem;
+}
+
 .errorlist {
     list-style-type: none;
     margin: 1rem 0;
@@ -261,6 +265,7 @@ h3 {
 
 .flux-bloc-buttons {
     width: 100%;
+    padding: 1rem 0 1rem 0;
     ul {
         width: 100%;
         list-style-type: none;
@@ -344,14 +349,15 @@ h3 {
     }
 }
 
-.empty-posts {
-    margin-top: -1rem;
+.empty-content {
+    margin-top: 1.5rem;
     text-align: center;
     font-size: 1.5rem;
-    width: 100%;
     img {
+        margin-top: 1rem;
+        max-height: 400px;
         width: 100%;
-        border-radius: 10px;
+        object-fit: contain;
     }
 }
 
@@ -446,6 +452,12 @@ h3 {
         padding: 1.25rem 2rem;
     }
 
+    .empty-content {
+        img {
+            max-height: 500px;
+        }
+    }
+
     .signup-form {
         padding: 0 3rem;
     }
@@ -533,7 +545,6 @@ h3 {
     }
 }
 
-
 /* Desktop style (1024px and more*/
 @media screen and (min-width: 1024px) {
     body {
@@ -556,7 +567,6 @@ h3 {
     .signup-form {
         padding: 0 200px;
     }
-
 
     .bloc-grp-desc-img {
         img {

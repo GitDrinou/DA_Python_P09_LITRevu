@@ -14,31 +14,40 @@
                 <label for="search">Nom d'utilisateur</label>
                 <input type="text" id="search" name="search" value=
                         "{{ search_query }}" required>
-                <button type="submit" class="btn-action">Envoyer</button>
+                <button type="submit" class="btn-action">Suivre</button>
             </form>
         </section>
         <section>
-            <h3>Abonnements</h3>
-            <ul class="following-list">
-                {% for follow in following %}
-                    <li>
-                        <span>{{ follow.followed_user.username }}</span>
-                         <form method="post" action="
-{% url 'unfollow_user' follow.followed_user.id %}">
-                            {% csrf_token %}
-                            <button class="btn-action">Se désabonner</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
+            <h3>Liste de vos abonnements</h3>
+            {% if following %}
+                <ul class="following-list">
+                    {% for follow in following %}
+                        <li>
+                            <span>{{ follow.followed_user.username }}</span>
+                             <form method="post" action="
+    {% url 'unfollow_user' follow.followed_user.id %}">
+                                {% csrf_token %}
+                                <button class="btn-action">Ne plus
+                                    suivre</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+             {% else %}
+                <p> Vous ne suivez personne.</p>
+            {% endif %}
         </section>
         <section>
-            <h3>Abonnés</h3>
-            <ul class="followers-list">
-                {% for follower in followers %}
-                    <li>{{ follower.user.username }}</li>
-                {% endfor %}
-            </ul>
+            <h3>Liste de vos abonnés</h3>
+            {% if followers %}
+                <ul class="followers-list">
+                    {% for follower in followers %}
+                        <li>{{ follower.user.username }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Vous n'avez aucuns abonnés.</p>
+            {% endif %}
         </section>
     </main>
 {% endblock content %}

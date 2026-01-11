@@ -2,10 +2,11 @@
 {% block content %}
     <main class="bloc-main main-confirm">
        <h2>Supprimer {{ object_type }}:<br> "{{ object_type }}"</h2>
-        <p>Êtes-vous sûr de vouloir supprimer ce ticket ? </p>
-        <form method="post">
+        <p class="txt-confirm">Êtes-vous sûr de vouloir supprimer ce post ?
+        </p>
+        <form method="post" class="bloc-form">
             {% csrf_token %}
-            <button type="submit" class="btn-delete">Supprimer</button>
+            <button type="submit" class="btn-action">Supprimer</button>
             <a href="{{ cancel_url }}" class="btn-link-action">Annuler</a>
         </form>
     </main>

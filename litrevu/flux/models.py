@@ -55,4 +55,4 @@ class UserFollows(models.Model):
         unique_together = (('user', 'followed_user'),)
 
     def __str__(self):
-        return f"{self.user} par {self.followed_user}"
+        return f"{self.user} suit {self.followed_user}"

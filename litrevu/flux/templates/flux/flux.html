@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <main class="bloc-main main-flux">
+        <h2>Votre flux</h2>
         <section class="flux-bloc-buttons">
             <ul>
                 <li><a href="{% url 'ticket_create' %}">Demander une
@@ -11,70 +12,79 @@
             </ul>
         </section>
         <section class="bloc-articles">
-            {% for obj in flux %}
-                <article>
-                    <div class="article_header">
-                        <p>
-                            {% if obj.content_type == "Ticket" %}
-                                {% if user == obj.user %}
-                                    Vous avez demandé une critique
+            {% if flux  %}
+                {% for obj in flux %}
+                    <article>
+                        <div class="article_header">
+                            <p>
+                                {% if obj.content_type == "Ticket" %}
+                                    {% if user == obj.user %}
+                                        Vous avez demandé une critique
+                                    {% else %}
+                                        {{ obj.user }} a demandé une critique
+                                    {% endif %}
                                 {% else %}
-                                    {{ obj.user }} a demandé une critique
+                                    {% if user == obj.user %}
+                                        Vous avez publié une critique
+                                    {% else %}
+                                        {{ obj.user }} a publié une critique
+                                    {% endif %}
                                 {% endif %}
-                            {% else %}
-                                {% if user == obj.user %}
-                                    Vous avez publié une critique
-                                {% else %}
-                                    {{ obj.user }} a publié une critique
-                                {% endif %}
-                            {% endif %}
-                        </p>
-                        <p class="time_txt">
-                            {{ obj.time_created|date:"H:i d F Y" }}
-                        </p>
-                    </div>
-                    {% if obj.content_type == "Ticket" %}
-                        <p class="ticket_title">{{ obj.ticket }}</p>
-                        <div class="bloc-grp-desc-img">
-                            <p>{{ obj.description }}</p>
-                            {% if obj.image %}
-                                <img src="/media/{{ obj.image }}"
-                                     alt="illustration de {{ obj.ticket }}">
-                            {% endif %}
+                            </p>
+                            <p class="time_txt">
+                                {{ obj.time_created|date:"H:i d F Y" }}
+                            </p>
                         </div>
-                        {% if obj.id not in user_reviewed_tickets %}
-                            <div class="bloc-button">
-                                <a href="{% url 'ticket_review' obj.id%}"
-                                  class="btn-link-action">Créer une critique</a>
+                        {% if obj.content_type == "Ticket" %}
+                            <p class="ticket_title">{{ obj.ticket }}</p>
+                            <div class="bloc-grp-desc-img">
+                                <p>{{ obj.description }}</p>
+                                {% if obj.image %}
+                                    <img src="/media/{{ obj.image }}"
+                                         alt="illustration de {{ obj.ticket }}">
+                                {% endif %}
+                            </div>
+                            {% if obj.id not in user_reviewed_tickets %}
+                                <div class="bloc-button">
+                                    <a href="{% url 'ticket_review' obj.id%}"
+                                      class="btn-link-action">Créer une critique</a>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="bloc-rating">
+                                {% for i in ""|ljust:obj.rating %}
+                                    <img src="{% static 'litrevu/images/star.png' %}"
+                                        alt="étoile">
+                                {% endfor %}
+                            </div>
+                            <div class="review_headline">
+                                <p>{{ obj.headline }}</p>
+                                <p>{{ obj.body }}</p>
+                            </div>
+                            <div class="bloc-ticket-reviewed">
+                                <p>Ticket {{ obj.ticket.user }}</p>
+                                <p class="ticket_title">{{ obj.ticket.ticket }}</p>
+                                <div class="bloc-grp-desc-img">
+                                    <p>{{ obj.ticket.description }}</p>
+                                    {% if obj.ticket.image %}
+                                        <img src="/media/{{ obj.ticket.image }}"
+                                             alt="illustration de
+        {{ obj.ticket.ticket }}">
+                                    {% endif %}
+                                </div>
                             </div>
                         {% endif %}
-                    {% else %}
-                        <div class="bloc-rating">
-                            {% for i in ""|ljust:obj.rating %}
-                                <img src="{% static 'litrevu/images/star.png' %}"
-                                    alt="étoile">
-                            {% endfor %}
-                        </div>
-                        <div class="review_headline">
-                            <p>{{ obj.headline }}</p>
-                            <p>{{ obj.body }}</p>
-                        </div>
-                        <div class="bloc-ticket-reviewed">
-                            <p>Ticket {{ obj.ticket.user }}</p>
-                            <p class="ticket_title">{{ obj.ticket.ticket }}</p>
-                            <div class="bloc-grp-desc-img">
-                                <p>{{ obj.ticket.description }}</p>
-                                {% if obj.ticket.image %}
-                                    <img src="/media/{{ obj.ticket.image }}"
-                                         alt="illustration de
-    {{ obj.ticket.ticket }}">
-                                {% endif %}
-                            </div>
-
-                        </div>
-                    {% endif %}
-                </article>
-            {% endfor %}
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="empty-content">
+                    <h3>Vous n'avez aucun flux.</h3>
+                    <p>Vous pouvez demander ou créer une critique, ou suivre
+                        d'autres utilisateurs.
+                    </p>
+                    <img src="{% static 'litrevu/images/empty.png' %}" alt="">
+                </div>
+            {% endif %}
         </section>
     </main>
 {% endblock content %}
