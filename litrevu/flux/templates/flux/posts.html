@@ -2,77 +2,77 @@
 {% load static %}
 {% block content %}
     <main class="bloc-main main-posts">
-    <h2>Vos Posts</h2>
-    <section class="bloc-articles">
-        {% if posts %}
-            {% for post in posts %}
-                <article>
-                    <div class="article_header">
-                        <p>
-                            {% if post.content_type == 'Ticket' %}
-                                Vous avez publié un ticket.
-                            {% else %}
-                                Vous avez publié une critique.
-                            {% endif %}
-                        </p>
-                        <p class="time_txt">
-                            {{ post.time_created|date:"H:i d F Y" }}
-                        </p>
-                    </div>
-                    {% if post.content_type == 'Ticket' %}
-                        <p class="ticket_title">{{ post.ticket }}</p>
-                        <div class="bloc-grp-desc-img">
-                            <p>{{ post.description }}</p>
-                            {% if post.image %}
-                                <img src="/media/{{ post.image }}"
-                                     alt="illustration de {{ post.ticket }}">
-                            {% endif %}
+        <h2>Vos Posts</h2>
+        <section class="bloc-articles">
+            {% if posts %}
+                {% for post in posts %}
+                    <article>
+                        <div class="article_header">
+                            <p>
+                                {% if post.content_type == 'Ticket' %}
+                                    Vous avez publié un ticket.
+                                {% else %}
+                                    Vous avez publié une critique.
+                                {% endif %}
+                            </p>
+                            <p class="time_txt">
+                                {{ post.time_created|date:"H:i d F Y" }}
+                            </p>
                         </div>
-                    {% else %}
-                         <div class="bloc-rating">
-                            {% for i in ""|ljust:post.rating %}
-                                <img src="{% static 'litrevu/images/star.png' %}"
-                                    alt="étoile">
-                            {% endfor %}
-                        </div>
-                        <div class="review_headline">
-                            <p>{{ post.headline }}</p>
-                            <p>{{ post.body }}</p>
-                        </div>
-                        <div class="bloc-ticket-reviewed">
-                            <p>Ticket {{ post.ticket.user }}</p>
-                            <p class="ticket_title">{{ post.ticket.ticket }}</p>
+                        {% if post.content_type == 'Ticket' %}
+                            <p class="ticket_title">{{ post.ticket }}</p>
                             <div class="bloc-grp-desc-img">
-                                <p>{{ post.ticket.description }}</p>
-                                {% if post.ticket.image %}
-                                    <img src="/media/{{ post.ticket.image }}"
-                                         alt="illustration de
-    {{ obj.ticket.ticket }}">
+                                <p>{{ post.description }}</p>
+                                {% if post.image %}
+                                    <img src="/media/{{ post.image }}"
+                                         alt="illustration de {{ post.ticket }}">
                                 {% endif %}
                             </div>
-                        </div>
-                    {% endif %}
-                    <div class="btn-grp-action">
-                        {% if post.content_type == 'Ticket' %}
-                            <a href="{% url 'ticket_edit' post.id %}"
-                               class="btn-link-action">Modifier</a>
-                            <a href="{% url 'ticket_delete' post.id %}"
-                               class="btn-link-action">Supprimer</a>
                         {% else %}
-                            <a href="{% url 'review_edit' post.id %}"
-                               class="btn-link-action">Modifier</a>
-                            <a href="{% url 'review_delete' post.id %}"
-                               class="btn-link-action">Supprimer</a>
+                             <div class="bloc-rating">
+                                {% for i in ""|ljust:post.rating %}
+                                    <img src="{% static 'litrevu/images/star.png' %}"
+                                        alt="étoile">
+                                {% endfor %}
+                            </div>
+                            <div class="review_headline">
+                                <p>{{ post.headline }}</p>
+                                <p>{{ post.body }}</p>
+                            </div>
+                            <div class="bloc-ticket-reviewed">
+                                <p>Ticket {{ post.ticket.user }}</p>
+                                <p class="ticket_title">{{ post.ticket.ticket }}</p>
+                                <div class="bloc-grp-desc-img">
+                                    <p>{{ post.ticket.description }}</p>
+                                    {% if post.ticket.image %}
+                                        <img src="/media/{{ post.ticket.image }}"
+                                             alt="illustration de
+        {{ obj.ticket.ticket }}">
+                                    {% endif %}
+                                </div>
+                            </div>
                         {% endif %}
-                    </div>
-                </article>
-            {% endfor %}
-        {% else %}
-            <div class="empty-content">
-                <p>Vous n'avez publié aucuns posts.</p>
-                <img src="{% static 'litrevu/images/empty.png' %}" alt="">
-            </div>
-        {% endif %}
-    </section>
+                        <div class="btn-grp-action">
+                            {% if post.content_type == 'Ticket' %}
+                                <a href="{% url 'ticket_edit' post.id %}"
+                                   class="btn-link-action">Modifier</a>
+                                <a href="{% url 'ticket_delete' post.id %}"
+                                   class="btn-link-action">Supprimer</a>
+                            {% else %}
+                                <a href="{% url 'review_edit' post.id %}"
+                                   class="btn-link-action">Modifier</a>
+                                <a href="{% url 'review_delete' post.id %}"
+                                   class="btn-link-action">Supprimer</a>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="empty-content">
+                    <p>Vous n'avez publié aucuns posts.</p>
+                    <img src="{% static 'litrevu/images/empty.png' %}" alt="">
+                </div>
+            {% endif %}
+        </section>
     </main>
 {% endblock %}
