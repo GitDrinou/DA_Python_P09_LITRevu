@@ -6,8 +6,7 @@ from flux.models import UserFollows, Ticket, Review
 
 User = get_user_model()
 
-
-class TestFluxPageView(TestCase):
+class BaseViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user1 = User.objects.create_user(username='user1',
@@ -37,6 +36,8 @@ class TestFluxPageView(TestCase):
         )
         self.client.login(username='user1', password='pass321')
 
+
+class TestFluxPageView(BaseViewTest):
     def test_flux_page_contains_user_and_followed(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
@@ -54,13 +55,7 @@ class TestFluxPageView(TestCase):
         self.assertNotContains(response, 'Ticket 3')
 
 
-class TestAddOrUpdateTicketView(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user(username='user1',
-                                             password='pass321')
-        self.client.login(username='user1', password='pass321')
-
+class TestAddOrUpdateTicketView(BaseViewTest):
     def test_add_ticket(self):
         response = self.client.post(
             reverse('ticket_create'),
@@ -70,11 +65,11 @@ class TestAddOrUpdateTicketView(TestCase):
             }
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Ticket.objects.count(), 1)
+        self.assertEqual(Ticket.objects.count(), 3)
 
     def test_update_ticket(self):
         ticket = Ticket.objects.create(ticket='Ancien Ticket 1',
-                                       user=self.user,)
+                                       user=self.user1,)
         response = self.client.post(
             reverse('ticket_edit', args=[ticket.id]),
             data={
@@ -87,31 +82,15 @@ class TestAddOrUpdateTicketView(TestCase):
         self.assertEqual(ticket.ticket, 'Ticket 1 Mis à jour')
 
 
-class TestDeleteTicketView(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user(username='user1',
-                                             password='pass321')
-        self.client.login(username='user1', password='pass321')
-        self.ticket = Ticket.objects.create(
-            ticket='Ticket A Supprimer',
-            user=self.user,
-        )
-
+class TestDeleteTicketView(BaseViewTest):
     def test_delete_ticket(self):
         response = self.client.post(
-            reverse('ticket_delete', args=[self.ticket.id]))
+            reverse('ticket_delete', args=[self.ticket1.id]))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Ticket.objects.count(), 0)
+        self.assertEqual(Ticket.objects.count(), 1)
 
 
-class TestAddTicketWithReviewView(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user(username='user1',
-                                             password='pass321')
-        self.client.login(username='user1', password='pass321')
-
+class TestAddTicketWithReviewView(BaseViewTest):
     def test_add_ticket_with_review(self):
         response = self.client.post(
             reverse('review_create'),
@@ -125,21 +104,11 @@ class TestAddTicketWithReviewView(TestCase):
             }
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Ticket.objects.count(), 1)
-        self.assertEqual(Review.objects.count(), 1)
+        self.assertEqual(Ticket.objects.count(), 3)
+        self.assertEqual(Review.objects.count(), 2)
 
 
-class TestSubscriptionView(TestCase):
-    def setUp(self):
-        self.client = Client()
-        self.user1 = User.objects.create_user(
-            username='user1',
-            password='pass321'
-        )
-        self.user2 = User.objects.create_user(username='user2',
-                                              password='pass987')
-        self.client.login(username='user1', password='pass321')
-
+class TestSubscriptionView(BaseViewTest):
     def test_follow_user(self):
         response = self.client.get(
             reverse('subscriptions'), {'search': 'user2'},
@@ -151,7 +120,6 @@ class TestSubscriptionView(TestCase):
         ).exists())
 
     def test_unfollow_user(self):
-        UserFollows.objects.create(user=self.user1, followed_user=self.user2)
         response = self.client.post(reverse('unfollow_user',
                                             args=[self.user2.id]),)
         self.assertEqual(response.status_code, 302)
