@@ -10,8 +10,7 @@ empowers a community of users to:
 The application web create a dynamic space where literature enthusiasts can 
 share insights, discover new perspectives, and engage with thoughtful critiques.
 ## Installation
-1. Clone the project with the command:`git clone https://github.
-com/GitDrinou/DA_Python_P09_LITRevu.git`
+1. Clone the project with the command:`git clone https://github.com/GitDrinou/DA_Python_P09_LITRevu.git`
 2. Create a virtual environment by running the following lines in your terminal:
    a - first, go the application's root directory
    b - check if you have access to `venv`: `python -m venv --help`
