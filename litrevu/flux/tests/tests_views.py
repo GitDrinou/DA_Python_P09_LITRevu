@@ -6,6 +6,7 @@ from flux.models import UserFollows, Ticket, Review
 
 User = get_user_model()
 
+
 class BaseViewTest(TestCase):
     def setUp(self):
         self.client = Client()
